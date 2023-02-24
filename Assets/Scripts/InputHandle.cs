@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InputHandle : MonoBehaviour
 {
-    public Transform gObjectSelected;
+    [HideInInspector] public Transform gObjectSelected;
 
     void Update()
     {
@@ -56,9 +56,17 @@ public class InputHandle : MonoBehaviour
 
         if (gObjectSelected)
         {
-            float distanceToScreen = Camera.main.WorldToScreenPoint(gObjectSelected.position).z;
-            Vector3 newPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distanceToScreen));
-            CommandStream.instance.CommandQueue.Enqueue(new DragCommand() { gObject = gObjectSelected.gameObject, newPos = newPos });
+
+            Ray rayToScreen = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            float x = Camera.main.transform.position.x + rayToScreen.direction.x * ((-Camera.main.transform.position.y + gObjectSelected.position.y) / rayToScreen.direction.y);
+            float z = Camera.main.transform.position.z + rayToScreen.direction.z * ((-Camera.main.transform.position.y + gObjectSelected.position.y) / rayToScreen.direction.y);
+
+            CommandStream.instance.CommandQueue.Enqueue(new ChangePosCommand()
+            {
+                gObject = gObjectSelected.gameObject,
+                newPos = new Vector3(x, gObjectSelected.position.y, z)
+            });
         }
     }
 }

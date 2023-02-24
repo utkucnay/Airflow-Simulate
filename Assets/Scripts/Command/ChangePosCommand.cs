@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragCommand : ICommand
+public class ChangePosCommand : ICommand
 {
     public void Execute()
     {

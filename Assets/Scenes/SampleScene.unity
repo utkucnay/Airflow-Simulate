@@ -482,13 +482,20 @@ MonoBehaviour:
     groundPrefab: {fileID: 2864103736017489599, guid: 067ca708b3a5d3b4f8187b6d7aa94a38,
       type: 3}
     groundSize: {x: 30, y: 30}
-  spawnProp:
-    spawnPrefab: {fileID: 4046116950477342156, guid: 738f451f75a5915478949f56c02f881e,
+  spawnCubeProp:
+    spawnCubePrefab: {fileID: 4046116950477342156, guid: 738f451f75a5915478949f56c02f881e,
       type: 3}
-    height: {x: 1, y: 2.6}
-    width: {x: 1, y: 2.6}
-    length: {x: 10, y: 30}
+    height: {x: 0.5, y: 3}
+    width: {x: 0.5, y: 3}
+    length: {x: 4, y: 30}
     spawnCubeCount: 10
+  spawnLineProp:
+    spawnLinePrefab: {fileID: 2657670543611270887, guid: 3d5e3584e7820b6428e59252dac1d728,
+      type: 3}
+    widthLine: {x: 0, y: 0}
+    spawnLineCount: 200
+    spawnLineLimitCount: {x: 10, y: 200}
+    windSpeed: 10
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,37 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ef2a5e74e323e47b0f1d0302b5586c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1716075110
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1716075111}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1716075111
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716075110}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1844245777
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,5 +633,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e9a68c80e7bfd14fafc2e71a4f9b69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubePrefab: {fileID: 4046116950477342156, guid: 738f451f75a5915478949f56c02f881e,
-    type: 3}

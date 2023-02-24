@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -11,20 +9,32 @@ public struct GroundProp
 }
 
 [System.Serializable]
-public struct SpawnProp 
+public struct SpawnCubeProp 
 {
-    public GameObject spawnPrefab;
+    public GameObject spawnCubePrefab;
     public Vector2 height;
     public Vector2 width;
     public Vector2 length;
     public int spawnCubeCount;
 }
 
+[System.Serializable]
+public struct SpawnLineProp
+{
+    public GameObject spawnLinePrefab;
+    public Vector2 widthLine;
+    public int spawnLineCount;
+    public Vector2Int spawnLineLimitCount;
+    public float windSpeed;
+}
+
 public class GameController : Singleton<GameController>
 {
     public GroundProp groundProp;
 
-    public SpawnProp spawnProp;
+    public SpawnCubeProp spawnCubeProp;
+
+    public SpawnLineProp spawnLineProp;
 
     protected override void Awake()
     {

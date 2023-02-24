@@ -6,6 +6,7 @@ public class RotateCommand : ICommand
 {
     public void Execute()
     {
+        //Gimmle Lock Problem :/ 
         transform.Rotate(new Vector3(-y * speed, 0, 0), Space.Self);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + x * speed, transform.eulerAngles.z);
     }
