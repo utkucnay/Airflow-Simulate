@@ -33,7 +33,7 @@ public class Spawner : Singleton<Spawner>
             lineQueue.Enqueue(lineGO);
         }
 
-        SpawnLines();
+        Invoke("SpawnLines", GameController.instance.spawnLineProp.nextSpawnLineTime);
     }
 
     public void RemoveLines(Line line)
@@ -43,12 +43,13 @@ public class Spawner : Singleton<Spawner>
 
         if (--lineCount == 0)
         {
-            SpawnLines();
+            Invoke("SpawnLines", GameController.instance.spawnLineProp.nextSpawnLineTime);
         }
     }
 
     void SpawnLines()
     {
+        float lineMaxCount = GameController.instance.spawnLineProp.spawnLineLimitCount.y;
         lineCount = GameController.instance.spawnLineProp.spawnLineCount;
         float offsetY = 5;
         float offsetZ = -GameController.instance.groundProp.groundSize.y;
@@ -60,7 +61,30 @@ public class Spawner : Singleton<Spawner>
             var lineGO = lineQueue.Dequeue();
             lineGO.SetActive(true);
             lineGO.transform.position = new Vector3(-GameController.instance.groundProp.groundSize.x, offsetY, offsetZ);
-            lineGO.GetComponent<Line>().SetDirAndSpeed(new Vector3(1, 0, 0), GameController.instance.spawnLineProp.windSpeed);
+
+            Line lineComp = lineGO.GetComponent<Line>();
+            lineComp.SetDir(new Vector3(1, 0, 0));
+            lineComp.ID = i;
+
+            offsetZ += offset;
+
+            if (offsetZ > GameController.instance.groundProp.groundSize.y)
+            {
+                offsetZ = -GameController.instance.groundProp.groundSize.y;
+                offsetY += offset;
+            }
+        }
+
+        for (int i = lineCount; i < lineMaxCount; i++)
+        {
+            var lineGO = lineQueue.Dequeue();
+            lineGO.SetActive(true);
+            lineGO.transform.position = new Vector3(-GameController.instance.groundProp.groundSize.x, offsetY, offsetZ);
+
+            Line lineComp = lineGO.GetComponent<Line>();
+            lineComp.SetDir(new Vector3(1, 0, 0));
+            lineComp.ID = i;
+
             offsetZ += offset;
 
             if (offsetZ > GameController.instance.groundProp.groundSize.y)

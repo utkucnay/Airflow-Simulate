@@ -22,10 +22,11 @@ public struct SpawnCubeProp
 public struct SpawnLineProp
 {
     public GameObject spawnLinePrefab;
-    public Vector2 widthLine;
+    public float widthLine;
     public int spawnLineCount;
     public Vector2Int spawnLineLimitCount;
     public float windSpeed;
+    public float nextSpawnLineTime;
 }
 
 public class GameController : Singleton<GameController>
